@@ -17,6 +17,7 @@ public class Board extends JPanel implements ActionListener {
 	
 	private Timer timer;
 	int yPos = 0;
+        int speed = 1;
 	int timre = 0;
 	int score = 0;
 	int xPos = 50;
@@ -45,9 +46,9 @@ public class Board extends JPanel implements ActionListener {
 	private void doDrawing(Graphics g) {
 		timre ++;
 		Graphics2D g2d = (Graphics2D) g;
-		char[] data = {'A', 'B', 'C', 'D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-		g2d.drawChars(data, charNumber, 1, xPos, yPos++);
-		if(yPos == 225){
+		char[] data = {'A', 'B', 'C', 'D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','å','ä','ö'};
+		g2d.drawChars(data, charNumber, 1, xPos, yPos = yPos + speed);
+		if(yPos > 320){
 			int min = 0;
 	    	int max = 25;
 			//charNumber = ThreadLocalRandom.current().nextInt(min, max + 1);
@@ -255,6 +256,7 @@ public class Board extends JPanel implements ActionListener {
                 }
             if (key == KeyEvent.VK_Z){
                 if(charNumber == 25){
+                    speed = speed + 1;
                 	score ++;
                 	charNumber = 0;
                 	yPos = 0;
